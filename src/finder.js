@@ -1,40 +1,37 @@
 import React from 'react';
+import Url from './url';
 import { TextField, Paper } from '@material-ui/core';
-// import { blue } from '@material-ui/core/colors';
-
-class Finder extends React.Component{
-	// constructor(props){
-	// 	super(props)
-		
-			state={query:""}
-		
-	
-
-	handleInputChange = (e) => {
-		this.setState({
-			 query: e.target.value
-			
-		})
-		
+class Finder extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { query: '', repo: '' };
 	}
-render() {
-  return(
-      // <h1>twinkle</h1>
-	// <input type="text" name="firstname"/>
-	<div>
-  <Paper elevation={6} style={{ padding: '15px', margin: '15px', backgroundColor:'#24292e'}}>
-				<form >
-					<TextField fullWidth label="search..." onChange={this.handleInputChange}></TextField>
-
-				</form>
-
-			</Paper>
-			</div>
+	handleInputChange = e => {
+		this.setState({
+			query: e.target.value,
+		});
+	};
+	handleSubmit = async e => {
+		e.preventDefault();
+		const response = await Url.get('users', {
+			params: {
+				q: this.state.query,
+			},
+		});
+		console.log(response.data.items)
+		this.setState({ repo: response.data });
+	};
+	render() {
+		return (
 			
+			<div>
+				<Paper elevation={6} style={{ padding: '15px', margin: '15px', backgroundColor: 'white' }}>
+					<form onSubmit={this.handleSubmit}>
+						<TextField fullWidth label="search..." onChange={this.handleInputChange}></TextField>
+					</form>
+				</Paper>
+			</div>
 		);
-    
-  
-}
-
+	}
 }
 export default Finder;

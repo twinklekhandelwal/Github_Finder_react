@@ -1,12 +1,9 @@
 import React from 'react';
 // import logo from './logo.svg';
-import Finde from './finder';
-import './App.css';
-
-function App() {
-  return (
-    <Finde/>
-  );
+import Finder from './finder';
+import './App.css';class Data extends React.Component {
+	render() {
+		return <Finder onFormsubmit={this.handleSubmit} />;
+	}
 }
-
-export default App;
+export default Data;
