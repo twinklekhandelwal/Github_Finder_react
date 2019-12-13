@@ -4,7 +4,7 @@ import { TextField, Paper } from '@material-ui/core';
 class Finder extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { query: '', repo: '' };
+		this.state = { query: '', repos: '' };
 	}
 	handleInputChange = e => {
 		this.setState({
@@ -19,7 +19,7 @@ class Finder extends React.Component {
 			},
 		});
 		console.log(response.data.items)
-		this.setState({ repo: response.data });
+		this.setState({ repos: response.data.items });
 	};
 	render() {
 		return (
