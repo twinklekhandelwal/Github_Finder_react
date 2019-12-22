@@ -6,31 +6,49 @@ import Card from '@material-ui/core/Card';
 import './App.css';
 class Repo extends React.Component {
 	render() {
-		const { repo } = this.props;
-		const { repos } = this.props;
+		const { image } = this.props;
+		const { info_repo } = this.props;
+		const { show_repo } = this.props;
 		return (
 			<div>
-				<div style={{display: 'inline-block'}}>
-					{repo.map(profile => (
-						<Card
-							style={{width: '235px', marginLeft: '200px', cursor: 'pointer' }}>
-							<CardContent>
-								<img style={{ width: '200px' }} alt="thumbnail" src={profile.avatar_url} />
-								<a href={profile.html_url}>
-									<Button variant="contained" style={{ marginTop: '20px', width: '100%' }}>
-										view
-									</Button>
-								</a>
-								<p style={{ fontSize: '27', color: '#666' }}>{profile.login}</p>
-								<hr />
-								<br />
-								<hr />
-							</CardContent>
-						</Card>
-					))}
-				</div>
-				<div style={{ marginLeft: '450px', display: 'inline-block' }}>
-					{repos.map(profile => (
+				{/* <div style={{display: 'inline-block'}}> */}
+				{image.map(profile => (
+					<Card style={{ width: '260px', marginLeft: '200px', cursor: 'pointer' }}>
+						<CardContent>
+							<img style={{ width: '200px' }} alt="thumbnail" src={profile.avatar_url} />
+							<a href={profile.html_url} style={{ fontSize: '27px', textDecoration: 'none' }}>
+								<Button
+									variant="contained"
+									style={{ fontSize: '27', marginTop: '20px', width: '100%' }}>
+									view
+								</Button>
+							</a>
+							<p style={{ fontSize: '27', color: '#666' }}>{profile.login}</p>
+							<hr />
+							<br />
+							<hr />
+							<span style={{ backgroundColor: '#5bc0de', padding: '3px 5px 3px 5px', fontsize: '0px' }}>
+								{show_repo.public_repos}Public Repo
+							</span>
+							<span style={{ backgroundColor: '#0275d8', padding: '3px 5px 3px 5px' }}>
+								{show_repo.public_gists}Public_Gists
+							</span>
+							<br />
+							<br />
+							<span style={{ backgroundColor: '#d9534f', padding: '3px 15px 5px 15px', fontsize: '0px' }}>
+								{show_repo.followers}Followers
+							</span>
+							<span style={{ backgroundColor: '#373a3c', padding: '3px 15px 5px 15px' }}>
+								{show_repo.following}Following
+							</span>
+						</CardContent>
+					</Card>
+				))}
+
+				{/* <span>{show_repo.public_repos}</span> */}
+				{/* </div> */}
+				<div style={{ marginLeft: '450px', display: 'inline-block', marginTop: '-400px' }}>
+					{info_repo.map(profile => (
 						<Card style={{ width: '425px', display: 'inline-block', marginLeft: '50px' }}>
 							<CardContent>
 								<Typography color="textSecondary" gutterBottom>

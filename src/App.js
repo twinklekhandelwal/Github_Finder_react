@@ -7,7 +7,7 @@ class Data extends React.Component {
 	render() {
 		return (
 			<div>
-				<Finder/>
+				<Finder />
 				{/* <Repo/>  */}
 			</div>
 		);
