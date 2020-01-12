@@ -6,13 +6,15 @@ import { TextField, Paper } from '@material-ui/core';
 class Finder extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { query: '', profile: '', repo: '', public: '' };
+		this.state = { query: '', profile: '', repo: '', public_repo : '' };
 	}
 	handleInputChange = e => {
 		this.setState({
 			query: e.target.value,
 		});
 	};
+
+	
 	handleSubmit = async e => {
 		e.preventDefault();
 		const response = await Url.get('users', {
@@ -28,17 +30,21 @@ class Finder extends React.Component {
 		console.log(public_repo.data);
 		this.setState({ profile: response.data.items, repo: resp.data, public: public_repo.data });
 	};
-
+	
+	// componentDidMount(){
+	// 	this.handleSubmit.bind(this)();
+	//   }
+	
 	render() {
 		return (
 			<div>
 				<Paper elevation={6} style={{ padding: '15px', margin: '15px', backgroundColor: 'white' }}>
-					<form onSubmit={this.handleSubmit}>
+					<form onSubmit={this.handleSubmit.bind(this)}>
 						<TextField fullWidth label="search..." onChange={this.handleInputChange}></TextField>
 					</form>
 				</Paper>
 				{this.state.profile !== '' && (
-					<Repo image={this.state.profile} info_repo={this.state.repo} show_repo={this.state.public} />
+					<Repo {...this.state} />
 				)}
 			</div>
 		);

@@ -4,15 +4,17 @@ import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import './App.css';
-class Repo extends React.Component {
-	render() {
-		const { image } = this.props;
-		const { info_repo } = this.props;
-		const { show_repo } = this.props;
+function Repo(props) {
+	// render() {
+		const { profile, repo, public_repo  }=props;
+		console.log(props)
+		
+		// const { info_repo } = this.props;
+		// const { show_repo } = this.props;
 		return (
 			<div>
 				{/* <div style={{display: 'inline-block'}}> */}
-				{image.map(profile => (
+				{profile.map(profile => (
 					<Card style={{ width: '260px', marginLeft: '200px', cursor: 'pointer' }}>
 						<CardContent>
 							<img style={{ width: '200px' }} alt="thumbnail" src={profile.avatar_url} />
@@ -28,18 +30,18 @@ class Repo extends React.Component {
 							<br />
 							<hr />
 							<span style={{ backgroundColor: '#5bc0de', padding: '3px 5px 3px 5px', fontsize: '0px' }}>
-								{show_repo.public_repos}Public Repo
+								{public_repo.public_repos}Public Repo
 							</span>
 							<span style={{ backgroundColor: '#0275d8', padding: '3px 5px 3px 5px' }}>
-								{show_repo.public_gists}Public_Gists
+								{public_repo.public_gists}Public_Gists
 							</span>
 							<br />
 							<br />
 							<span style={{ backgroundColor: '#d9534f', padding: '3px 15px 5px 15px', fontsize: '0px' }}>
-								{show_repo.followers}Followers
+								{public_repo.followers}Followers
 							</span>
 							<span style={{ backgroundColor: '#373a3c', padding: '3px 15px 5px 15px' }}>
-								{show_repo.following}Following
+								{public_repo.following}Following
 							</span>
 						</CardContent>
 					</Card>
@@ -48,7 +50,7 @@ class Repo extends React.Component {
 				{/* <span>{show_repo.public_repos}</span> */}
 				{/* </div> */}
 				<div style={{ marginLeft: '450px', display: 'inline-block', marginTop: '-400px' }}>
-					{info_repo.map(profile => (
+					{repo.map(profile => (
 						<Card style={{ width: '425px', display: 'inline-block', marginLeft: '50px' }}>
 							<CardContent>
 								<Typography color="textSecondary" gutterBottom>
@@ -98,5 +100,5 @@ class Repo extends React.Component {
 			</div>
 		);
 	}
-}
+
 export default Repo;
